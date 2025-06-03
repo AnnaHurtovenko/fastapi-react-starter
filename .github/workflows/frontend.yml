@@ -52,14 +52,19 @@ jobs:
 
       - name: Check dist contents
         run: ls -l dist
-        
+      
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
       - name: 🚀 Deploy to Azure Static Website
         uses: azure/CLI@v1
         with:
             inlineScript: |
               az storage blob upload-batch \
-                --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+                --account-name mystoragefrontend \
                 --destination '$web' \
-                --source frontend/dist \
+                --source dist \
                 --overwrite \
                 --sas-token ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
