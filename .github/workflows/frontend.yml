@@ -57,6 +57,6 @@ jobs:
             az storage blob upload-batch \
               --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
               --destination '$web' \
-              --source dist \
+              --source frontend/dist \
               --overwrite \
               --sas-token ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
