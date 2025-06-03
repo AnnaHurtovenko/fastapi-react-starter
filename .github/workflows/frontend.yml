@@ -64,7 +64,8 @@ jobs:
             inlineScript: |
               az storage blob upload-batch \
                 --account-name mystoragefrontend \
-                --destination '$web' \
+                --destination \$web \
                 --source dist \
                 --overwrite \
-                --sas-token ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
+                --auth-mode login \
+                --debug
