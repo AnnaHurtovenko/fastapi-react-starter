@@ -89,7 +89,6 @@ frontend/.cache/
 
 # Package managers
 yarn.lock
-package-lock.json
 
 # Temporary files
 *.tmp
