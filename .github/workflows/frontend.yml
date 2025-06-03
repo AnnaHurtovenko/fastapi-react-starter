@@ -40,8 +40,10 @@ jobs:
       - name: Run unit tests
         run: npm test
         continue-on-error: true 
-      - name: Gitleaks secret scan
+      - name: 🔐 Gitleaks secret scan
         uses: zricethezav/gitleaks-action@v2
+        with:
+          args: detect
         continue-on-error: true
       - name: Build frontend
         run: |
