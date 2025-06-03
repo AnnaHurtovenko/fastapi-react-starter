@@ -22,7 +22,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'npm'
+    
+      - name:  Restore node_modules cache
+        uses: actions/cache@v3
+        with:
+          path: frontend/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Install dependencies
         run: npm ci
@@ -36,13 +43,9 @@ jobs:
       - name: Run unit tests
         run: npm test
         continue-on-error: true 
-
-      - name: Check for secrets (Gitleaks)
+      - name: Gitleaks secret scan
         uses: zricethezav/gitleaks-action@v2
-        with:
-          config-path: .gitleaks.toml
-        continue-on-error: true 
-
+        continue-on-error: true
       - name: Build frontend
         run: |
           echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" > .env.production
