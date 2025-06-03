@@ -35,13 +35,13 @@ jobs:
 
       - name: Run unit tests
         run: npm test
-        continue-on-error: true # якщо поки немає тестів
+        continue-on-error: true 
 
       - name: Check for secrets (Gitleaks)
         uses: zricethezav/gitleaks-action@v2
         with:
           config-path: .gitleaks.toml
-        continue-on-error: true # або error залежно від стратегії
+        continue-on-error: true 
 
       - name: Build frontend
         run: |
