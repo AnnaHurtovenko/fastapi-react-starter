@@ -54,7 +54,6 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            cd frontend
             az storage blob upload-batch \
               --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
               --destination '$web' \
