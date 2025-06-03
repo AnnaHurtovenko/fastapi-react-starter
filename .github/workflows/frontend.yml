@@ -65,7 +65,7 @@ jobs:
               az storage blob upload-batch \
                 --account-name mystoragefrontend \
                 --destination \$web \
-                --source dist \
+                --source frontend/dist \
                 --overwrite \
                 --auth-mode login \
                 --debug
