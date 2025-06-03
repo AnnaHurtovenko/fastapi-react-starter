@@ -54,9 +54,10 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
+            cd frontend
             az storage blob upload-batch \
               --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
               --destination '$web' \
-              --source frontend/dist \
+              --source dist \
               --overwrite \
               --sas-token ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
